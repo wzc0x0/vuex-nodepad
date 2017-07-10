@@ -62,8 +62,8 @@
             }
         },
         methods:{
-            moveToDone(){
-
+            moveToDone(id){
+                this.$store.dispatch('eventdone',id)
             },
             moveToDo(id){
                 this.$store.dispatch('eventtodo',id)
@@ -71,8 +71,30 @@
             moveCancel(id){
                 this.$store.dispatch('eventcancel',id)
             },
-            changeCollapse(){
-
+            changeCollapse(num,event){
+                const show = this.collapse[num].show;
+                show?this.closeCollapse(event):this.openCollapse(event);
+                this.collapse[num].show = !show;
+            },
+            closeCollapse(event){
+                let ulElement = event.currentTarget.nextElementSibling,
+                    children = ulElement.getElementsByTagName('ul')[0];
+                ulElement.style.height = children.offsetHeight + 'px';
+                setTimeout(function(){
+                    ulElement.style.height = '0px';
+                    setTimeout(function () {
+                        ulElement.style.display = 'none';
+                    }, 300)
+                },10)
+            },
+            openCollapse(event){
+                let ulElement = event.currentTarget.nextElementSibling,
+                    children = ulElement.getElementsByTagName('ul')[0];
+                ulElement.style.display = "block";
+                ulElement.style.height = children.offsetHeight + 'px';
+                setTimeout(()=>{
+                    ulElement.style.height = 'auto';
+                },300)
             }
         }
     }

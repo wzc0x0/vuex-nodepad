@@ -12,37 +12,31 @@ export default {
         func.local.set(states)
     },
     [type.EVENTDONE](states,obj){
-        states.event.forEach((item,i)=>{
-            if(states.event[i].id === obj.id){
-                states.event[i].type = 2;
-                states.event[i].time = func.getDate();
-                let item = states.event[i];
-                states.event.splice(i,1);
+        states.event.forEach((item,i,arr) =>{
+            if(arr[i].id === obj.id){
+                arr[i].type = 2;
+                arr[i].time = func.getDate();
+                arr.splice(i,1,arr[i]);
             }
         });
-        states.event.unshift(item);
         func.local.set(states);
     },
     [type.EVENTTODO](states,obj){
-        states.event.forEach((item,i)=>{
-            if(states.event[i].id === obj.id){
-                states.event[i].type = 1;
-                states.event[i].time = func.getDate();
-                let item = states.event[i];
-                states.event.unshift(item);
-                states.event.splice(i,1);
+        states.event.forEach((item,i,arr) =>{
+            if(arr[i].id === obj.id){
+                arr[i].type = 1;
+                arr[i].time = func.getDate();
+                arr.splice(i,1,arr[i]);
             }
         });
         func.local.set(states);
     },
     [type.EVENTCANCEL](states,obj){
-        states.event.forEach((item,i)=>{
-            if(states.event[i].id === obj.id){
-                states.event[i].type = 3;
-                states.event[i].time = func.getDate();
-                let item = states.event[i];
-                states.event.unshift(item);
-                states.event.splice(i,1);
+        states.event.forEach((item,i,arr) =>{
+            if(arr[i].id === obj.id){
+                arr[i].type = 3;
+                arr[i].time = func.getDate();
+                arr.splice(i,1,arr[i]);
             }
         });
         func.local.set(states);

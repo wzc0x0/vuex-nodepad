@@ -37,8 +37,13 @@
             openTable(){
                 this.$emit('opentable');
             },
-            downloadData(){
-
+            downloadData(fileName,content){
+                let aTag = document.createElement("a");
+                let blob = new Blob([content]);
+                aTag.download = fileName;
+                aTag.href = URL.createObjectURL(blob);
+                aTag.click();
+                URL.revokeObjectURL(blob);
             },
             openTheme(){
                 this.$emit('opentheme');

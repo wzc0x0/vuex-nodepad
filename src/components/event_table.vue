@@ -6,7 +6,7 @@
                 <button @click="editData">确定</button>
             </div>
             <div class="screen-box">
-                <div class="div-select" :class="{'active': active}">
+                <div class="div-select" :class="{active: active}">
                     <div class="div-value" @click="active = !active">{{getTypeName}}</div>
                     <div class="div-select-body">
                         <div class="div-option" @click="doSelect(0)">筛选类型</div>
@@ -72,7 +72,10 @@
             }
         },
         methods:{
-            doSelect(){},
+            doSelect(type){
+                this.screen_type = type;
+                this.active = false;
+            },
             getType(type){
                 let str = "";
                 switch (type){
@@ -91,7 +94,9 @@
             editData(){},
             closeTable(){},
             showInput(){},
-            showDialog(){}
+            showDialog(index,id){
+                this.$emit('deldialog',index,id);
+            }
         }
     }
 </script>

@@ -26,7 +26,8 @@
         data(){
             return {
                 up_suc:false,
-                up_err:false
+                up_err:false,
+                event:''
             }
         },
         props:["msg"],
@@ -34,8 +35,15 @@
             cancelEvent(){
                 this.$emit("cancel")
             },
-            sureEvent(){},
-            sureUpload(){}
+            sureEvent(){
+                this.$emit('sure')
+            },
+            sureUpload(){
+                if(this.up_suc){
+                    this.$store.dispatch('editevent',this.event);
+                    this.cancelEvent();
+                }
+            }
         }
     }
 </script>

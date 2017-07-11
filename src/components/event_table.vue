@@ -91,12 +91,26 @@
                 }
                 return str
             },
-            editData(){},
-            closeTable(){},
-            showInput(){},
+            editData(){
+               this.info.content = this.info.content.trim();
+               if(this.info.content){
+                   this.$store.dispatch('editevent',this.info);
+                   this.is_edit = false;
+               }
+            },
+            showInput(index){
+                this.is_edit = true;
+                this.info = {
+                    index:index,
+                    content:this.notepad[index].content,
+                    id:this.notepad[index].id
+                };
+                this.$refs.content.focus();
+            },
             showDialog(index,id){
                 this.$emit('deldialog',index,id);
-            }
+            },
+            closeTable(){}
         }
     }
 </script>

@@ -1,3 +1,4 @@
+# Learn from [Lin-xin](https://github.com/lin-xin)
 # 基于vue2.0+vuex+localStorage开发的本地记事本
 
 > 本文采用vue2.0+vuex+localStorage+sass+webpack，实现一个本地存储的记事本。兼容PC端和移动端。在线预览地址：[DEMO](http://open.omwteam.com/notepad)
@@ -32,7 +33,7 @@
 	npm install cnpm -g --registry=https://registry.npm.taobao.org
 	cnpm -v 			// 查看cnpm版本号确认安装成功
 	cnpm install node-sass -D
-	
+
 	//安装成功后再看看是否可以正确运行了
 
 ## 功能截图
@@ -67,7 +68,7 @@
 
 
 ### 4.父子组件间的通讯
-	
+
 知识点：组件实例的作用域是孤立的。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。
 
 	1）父组件可以使用 props 把数据传给子组件。
